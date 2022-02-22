@@ -19,7 +19,7 @@ Passion is an open source community-driven cryptocurrency, focused on five main 
 
 (5) Ease of Use: Passion is determined to offer the best possible graphical interface for a core node/wallet. A full featured graphical product for new and advanced users.
 
-A lot more information and open for suggestions join the community at [Passion Discord](https://discordapp.com/invite/jzqVsJd).
+A lot more information and open for suggestions join the community at [Passion Discord](https://discord.gg/mkERQwqytZ).
 
 ## License
 Passion Core is released under the terms of the MIT license. See [COPYING] for more information or see https://opensource.org/licenses/MIT.
