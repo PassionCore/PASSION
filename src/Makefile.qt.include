@@ -1,0 +1,677 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/passion-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# passion qt core #
+include Makefile.qt_locale.include
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/passion/forms/loadingdialog.ui \
+  qt/passion/forms/snackbar.ui \
+  qt/passion/forms/navmenuwidget.ui \
+  qt/passion/forms/lockunlock.ui \
+  qt/passion/forms/expandablebutton.ui \
+  qt/passion/forms/receivedialog.ui \
+  qt/passion/forms/balancebubble.ui \
+  qt/passion/forms/topbar.ui \
+  qt/passion/forms/txrow.ui \
+  qt/passion/forms/dashboardwidget.ui \
+  qt/passion/forms/addresslabelrow.ui \
+  qt/passion/forms/contactdropdownrow.ui \
+  qt/passion/forms/optionbutton.ui \
+  qt/passion/forms/myaddressrow.ui \
+  qt/passion/forms/csrow.ui \
+  qt/passion/forms/sendmemodialog.ui \
+  qt/passion/forms/sendchangeaddressdialog.ui \
+  qt/passion/forms/sendconfirmdialog.ui \
+  qt/passion/forms/sendcustomfeedialog.ui \
+  qt/passion/forms/sendmultirow.ui \
+  qt/passion/forms/send.ui \
+  qt/passion/forms/addnewaddressdialog.ui \
+  qt/passion/forms/addnewcontactdialog.ui \
+  qt/passion/forms/requestdialog.ui \
+  qt/passion/forms/receivewidget.ui \
+  qt/passion/forms/tooltipmenu.ui \
+  qt/passion/forms/addresseswidget.ui \
+  qt/passion/forms/defaultdialog.ui \
+  qt/passion/forms/coldstakingwidget.ui \
+  qt/passion/subscription/subscriptionwidget.ui \
+  qt/passion/subscription/subrow.ui \
+  qt/passion/subscription/subscriptiontipmenu.ui \
+  qt/passion/subscription/subscriptioninfodialog.ui \
+  qt/passion/settings/forms/settingsbackupwallet.ui \
+  qt/passion/settings/forms/settingsexportcsv.ui \
+  qt/passion/settings/forms/settingsbittoolwidget.ui \
+  qt/passion/settings/forms/settingsconsolewidget.ui \
+  qt/passion/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/passion/settings/forms/settingsfaqwidget.ui \
+  qt/passion/settings/forms/settingsinformationwidget.ui \
+  qt/passion/settings/forms/settingsmainoptionswidget.ui \
+  qt/passion/settings/forms/settingssubscribeoptionswidget.ui \
+  qt/passion/settings/forms/settingssignmessagewidgets.ui \
+  qt/passion/settings/forms/settingswalletoptionswidget.ui \
+  qt/passion/settings/forms/settingswalletrepairwidget.ui \
+  qt/passion/settings/forms/settingswidget.ui \
+  qt/passion/forms/welcomecontentwidget.ui \
+  qt/passion/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/passion/moc_passiongui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_rpcexecutor.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/passion/moc_loadingdialog.cpp \
+  qt/passion/moc_pwidget.cpp \
+  qt/passion/moc_focuseddialog.cpp \
+  qt/passion/moc_snackbar.cpp \
+  qt/passion/moc_navmenuwidget.cpp \
+  qt/passion/moc_lockunlock.cpp \
+  qt/passion/moc_expandablebutton.cpp \
+  qt/passion/moc_furabstractlistitemdelegate.cpp \
+  qt/passion/moc_receivedialog.cpp \
+  qt/passion/moc_pfborderimage.cpp \
+  qt/passion/moc_topbar.cpp \
+  qt/passion/moc_txrow.cpp \
+  qt/passion/moc_dashboardwidget.cpp \
+  qt/passion/moc_addresslabelrow.cpp \
+  qt/passion/moc_contactdropdownrow.cpp \
+  qt/passion/moc_optionbutton.cpp \
+  qt/passion/moc_coldstakingmodel.cpp \
+  qt/passion/moc_myaddressrow.cpp \
+  qt/passion/moc_csrow.cpp \
+  qt/passion/moc_contactsdropdown.cpp \
+  qt/passion/moc_sendchangeaddressdialog.cpp \
+  qt/passion/moc_sendconfirmdialog.cpp \
+  qt/passion/moc_sendcustomfeedialog.cpp \
+  qt/passion/moc_sendmemodialog.cpp \
+  qt/passion/moc_sendmultirow.cpp \
+  qt/passion/moc_send.cpp \
+  qt/passion/moc_addnewaddressdialog.cpp \
+  qt/passion/moc_addnewcontactdialog.cpp \
+  qt/passion/moc_requestdialog.cpp \
+  qt/passion/moc_receivewidget.cpp \
+  qt/passion/moc_tooltipmenu.cpp \
+  qt/passion/moc_addresseswidget.cpp \
+  qt/passion/moc_defaultdialog.cpp \
+  qt/passion/moc_coldstakingwidget.cpp \
+  qt/passion/subscription/moc_subscriptionmodel.cpp \
+  qt/passion/subscription/moc_subscriptionwidget.cpp \
+  qt/passion/subscription/moc_subrow.cpp \
+  qt/passion/subscription/moc_subscriptiontipmenu.cpp\
+  qt/passion/subscription/moc_subsite.cpp \
+  qt/passion/subscription/moc_subscriptioninfodialog.cpp \
+  qt/passion/settings/moc_settingsbackupwallet.cpp \
+  qt/passion/settings/moc_settingsexportcsv.cpp \
+  qt/passion/settings/moc_settingsbittoolwidget.cpp \
+  qt/passion/settings/moc_settingsconsolewidget.cpp \
+  qt/passion/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/passion/settings/moc_settingsfaqwidget.cpp \
+  qt/passion/settings/moc_settingsinformationwidget.cpp \
+  qt/passion/settings/moc_settingsmainoptionswidget.cpp \
+  qt/passion/settings/moc_settingssignmessagewidgets.cpp \
+  qt/passion/settings/moc_settingssubscribeoptionswidget.cpp \
+  qt/passion/settings/moc_settingswalletoptionswidget.cpp \
+  qt/passion/settings/moc_settingswalletrepairwidget.cpp \
+  qt/passion/settings/moc_settingswidget.cpp \
+  qt/passion/moc_welcomecontentwidget.cpp \
+  qt/passion/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/passion.moc \
+  qt/intro.moc
+
+QT_QRC_CPP = qt/qrc_passion.cpp
+QT_QRC = qt/passion.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_passion_locale.cpp
+QT_QRC_LOCALE = qt/passion_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/passion/passiongui.h \
+  qt/bitcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/rpcexecutor.h \
+  qt/trafficgraphwidget.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/passion/prunnable.h \
+  qt/passion/pfborderimage.h \
+  qt/passion/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/passion/pwidget.h \
+  qt/passion/focuseddialog.h \
+  qt/passion/guitransactionsutils.h \
+  qt/passion/snackbar.h \
+  qt/passion/navmenuwidget.h \
+  qt/passion/lockunlock.h \
+  qt/passion/receivedialog.h \
+  qt/passion/furlistrow.h \
+  qt/passion/furabstractlistitemdelegate.h \
+  qt/passion/txviewholder.h \
+  qt/passion/qtutils.h \
+  qt/passion/expandablebutton.h \
+  qt/passion/balancebubble.h \
+  qt/passion/topbar.h \
+  qt/passion/txrow.h \
+  qt/passion/addressholder.h \
+  qt/passion/addressfilterproxymodel.h \
+  qt/passion/dashboardwidget.h \
+  qt/passion/addresslabelrow.h \
+  qt/passion/contactdropdownrow.h \
+  qt/passion/optionbutton.h \
+  qt/passion/coldstakingmodel.h \
+  qt/passion/myaddressrow.h \
+  qt/passion/csrow.h \
+  qt/passion/contactsdropdown.h \
+  qt/passion/sendchangeaddressdialog.h \
+  qt/passion/sendconfirmdialog.h \
+  qt/passion/sendcustomfeedialog.h \
+  qt/passion/sendmemodialog.h \
+  qt/passion/sendmultirow.h \
+  qt/passion/send.h \
+  qt/passion/addnewaddressdialog.h \
+  qt/passion/addnewcontactdialog.h \
+  qt/passion/requestdialog.h \
+  qt/passion/receivewidget.h \
+  qt/passion/tooltipmenu.h \
+  qt/passion/addresseswidget.h \
+  qt/passion/defaultdialog.h \
+  qt/passion/coldstakingwidget.h \
+  qt/passion/subscription/subscriptionmodel.h \
+  qt/passion/subscription/subscriptionwidget.h \
+  qt/passion/subscription/subrow.h \
+  qt/passion/subscription/subscriptiontipmenu.h \
+  qt/passion/subscription/subsite.h \
+  qt/passion/subscription/subscriptioninfodialog.h \
+  qt/passion/settings/settingsbackupwallet.h \
+  qt/passion/settings/settingsexportcsv.h \
+  qt/passion/settings/settingsbittoolwidget.h \
+  qt/passion/settings/settingsconsolewidget.h \
+  qt/passion/settings/settingsdisplayoptionswidget.h \
+  qt/passion/settings/settingsfaqwidget.h \
+  qt/passion/settings/settingsinformationwidget.h \
+  qt/passion/settings/settingsmainoptionswidget.h \
+  qt/passion/settings/settingssignmessagewidgets.h \
+  qt/passion/settings/settingswalletoptionswidget.h \
+  qt/passion/settings/settingswalletrepairwidget.h \
+  qt/passion/settings/settingssubscribeoptionswidget.h \
+  qt/passion/settings/settingswidget.h \
+  qt/passion/welcomecontentwidget.h \
+  qt/passion/splash.h
+
+RES_ICONS = \
+  qt/passion/res/img/subscribe_fund.png \
+  qt/passion/res/img/subscribe_copy.png \
+  qt/passion/res/img/subscribe_pay.png \
+  qt/passion/res/img/subscribe_visit.png \
+  qt/passion/res/img/subscribe_info.png \
+  qt/passion/res/img/subscribe_trash.png \
+  qt/passion/res/img/passion.ico \
+  qt/passion/res/img/passion.png \
+  qt/passion/res/img/lock_closed.png \
+  qt/passion/res/img/bg-dashboard-banner.png \
+  qt/passion/res/img/bg-multi-number-dark.svg \
+  qt/passion/res/img/topbar_icon/ic-check-locked.svg \
+  qt/passion/res/img/nav_icon/ic-nav-address.svg \
+  qt/passion/res/img/topbar_icon/ic-update.svg \
+  qt/passion/res/img/bg-multi-number.svg \
+  qt/passion/res/img/nav_icon/ic-nav-cold-staking.svg \
+  qt/passion/res/img/nav_icon/ic-nav-cold-staking-active.svg \
+  qt/passion/res/img/nav_icon/ic-nav-dashboard-active.svg \
+  qt/passion/res/img/topbar_icon/ic-wallet-status-locked.svg \
+  qt/passion/res/img/bg-splash.png \
+  qt/passion/res/img/nav_icon/ic-nav-dashboard-hover.svg \
+  qt/passion/res/img/topbar_icon/ic-wallet-status-staking.svg \
+  qt/passion/res/img/nav_icon/ic-nav-dashboard.svg \
+  qt/passion/res/img/topbar_icon/ic-wallet-status-unlocked.svg \
+  qt/passion/res/img/nav_icon/ic-nav-master-active.svg \
+  qt/passion/res/img/ic-watch-password-white.svg \
+  qt/passion/res/img/bg-welcome-container.png \
+  qt/passion/res/img/topbar_icon/ic-check-staking-off.svg \
+  qt/passion/res/img/nav_icon/ic-nav-master-hover.svg \
+  qt/passion/res/img/ic-watch-password.svg \
+  qt/passion/res/img/bg-welcome.png \
+  qt/passion/res/img/topbar_icon/ic-check-staking.svg \
+  qt/passion/res/img/nav_icon/ic-nav-master.svg \
+  qt/passion/res/img/btn-radio-active.svg \
+  qt/passion/res/img/topbar_icon/ic-check-sync-off.svg \
+  qt/passion/res/img/nav_icon/ic-nav-privacy-active.svg \
+  qt/passion/res/img/img-empty-contacts.svg \
+  qt/passion/res/img/btn-radio-off.svg \
+  qt/passion/res/img/nav_icon/ic-nav-privacy-hover.svg \
+  qt/passion/res/img/img-empty-dark-contacts.svg \
+  qt/passion/res/img/ic-contact-arrow-down.svg \
+  qt/passion/res/img/ic-contact-arrow-down-white.svg \
+  qt/passion/res/img/topbar_icon/ic-check-sync.svg \
+  qt/passion/res/img/topbar_icon/ic-check-faq.svg \
+  qt/passion/res/img/nav_icon/ic-nav-privacy.svg \
+  qt/passion/res/img/img-empty-dark-error.svg \
+  qt/passion/res/img/ic-add-label.svg \
+  qt/passion/res/img/ic-pending.svg \
+  qt/passion/res/img/img-empty-dark-masternode.svg \
+  qt/passion/res/img/ic-add-liliac.svg \
+  qt/passion/res/img/img-empty-dark-multisend.svg \
+  qt/passion/res/img/ic-add-purple.svg \
+  qt/passion/res/img/ic-check-white.svg \
+  qt/passion/res/img/img-empty-dark-peers.svg \
+  qt/passion/res/img/ic-add.svg \
+  qt/passion/res/img/ic-check.svg \
+  qt/passion/res/img/nav_icon/ic-nav-send-active.svg \
+  qt/passion/res/img/nav_icon/ic-nav-send-hover.svg \
+  qt/passion/res/img/nav_icon/ic-nav-receive.svg \
+  qt/passion/res/img/nav_icon/ic-nav-receive-hover.svg \
+  qt/passion/res/img/nav_icon/ic-nav-receive-active.svg \
+  qt/passion/res/img/img-empty-dark-staking-off.svg \
+  qt/passion/res/img/img-empty-dark-staking-on.svg \
+  qt/passion/res/img/ic-address-book-grey.svg \
+  qt/passion/res/img/ic-chevron-left.svg \
+  qt/passion/res/img/img-empty-dark-transactions.svg \
+  qt/passion/res/img/ic-address-book-white.svg \
+  qt/passion/res/img/ic-chevron-right.svg \
+  qt/passion/res/img/ic-chevron-right-liliac.svg \
+  qt/passion/res/img/nav_icon/ic-nav-send.svg \
+  qt/passion/res/img/nav_icon/ic-nav-wss-girl.svg \
+  qt/passion/res/img/nav_icon/ic-nav-wss-girl-active.svg \
+  qt/passion/res/img/nav_icon/ic-nav-wss-girl-hover.svg \
+  qt/passion/res/img/nav_icon/ic-nav-settings-hover.svg \
+  qt/passion/res/img/nav_icon/ic-nav-settings.svg \
+  qt/passion/res/img/nav_icon/ic-nav-settings-active.svg \
+  qt/passion/res/img/img-empty-error.svg \
+  qt/passion/res/img/ic-address-book.svg \
+  qt/passion/res/img/ic-clear-liliac.svg \
+  qt/passion/res/img/img-empty-masternode.svg \
+  qt/passion/res/img/ic-address-send-white.svg \
+  qt/passion/res/img/ic-clear-purple.svg \
+  qt/passion/res/img/img-empty-multisend.svg \
+  qt/passion/res/img/ic-address-send.svg \
+  qt/passion/res/img/ic-close-white.svg \
+  qt/passion/res/img/img-empty-peers.svg \
+  qt/passion/res/img/img-empty-privacy.svg \
+  qt/passion/res/img/img-empty-privacy-dark.svg \
+  qt/passion/res/img/ic-arrow-drop-down-white.svg \
+  qt/passion/res/img/ic-close.svg \
+  qt/passion/res/img/ic-radio-liliac-on.svg \
+  qt/passion/res/img/img-empty-staking-off.svg \
+  qt/passion/res/img/ic-arrow-drop-down.svg \
+  qt/passion/res/img/ic-coin-passion.svg \
+  qt/passion/res/img/ic-receive-off.svg \
+  qt/passion/res/img/img-empty-staking-on.svg \
+  qt/passion/res/img/ic-arrow-drop-up-white.svg \
+  qt/passion/res/img/ic-receive-on.svg \
+  qt/passion/res/img/img-empty-transactions.svg \
+  qt/passion/res/img/ic-arrow-drop-up.svg \
+  qt/passion/res/img/ic-received.svg \
+  qt/passion/res/img/ic-arrow-drop-white-down.svg \
+  qt/passion/res/img/ic-combo-box.svg \
+  qt/passion/res/img/ic-send.svg \
+  qt/passion/res/img/ic-arrow-purple-down.svg \
+  qt/passion/res/img/ic-connect.svg \
+  qt/passion/res/img/img-logo-passion.png \
+  qt/passion/res/img/ic-arrow-right-white.svg \
+  qt/passion/res/img/ic-arrow-left-white.svg \
+  qt/passion/res/img/ic-arrow-left.svg \
+  qt/passion/res/img/ic-copy-liliac.svg \
+  qt/passion/res/img/ic-arrow-right.svg \
+  qt/passion/res/img/ic-copy.svg \
+  qt/passion/res/img/ic-copy-big.svg \
+  qt/passion/res/img/ic-copy-big-white.svg \
+  qt/passion/res/img/ic-arrow-white-left.svg \
+  qt/passion/res/img/ic-exit.svg \
+  qt/passion/res/img/ic-switch-liliac-on.svg \
+  qt/passion/res/img/img-nav-logo-dark.png \
+  qt/passion/res/img/img-nav-logo-light.png \
+  qt/passion/res/img/ic-arrow-white-right.svg \
+  qt/passion/res/img/ic-expand.svg \
+  qt/passion/res/img/ic-switch-off.svg \
+  qt/passion/res/img/img-qr-test-big.png \
+  qt/passion/res/img/ic-check-active.svg \
+  qt/passion/res/img/ic-folder.svg \
+  qt/passion/res/img/ic-switch-on.svg \
+  qt/passion/res/img/img-qr-test.png \
+  qt/passion/res/img/ic-check-box.svg \
+  qt/passion/res/img/ic-check-box-dark-active.svg \
+  qt/passion/res/img/ic-check-box-indeterminate.svg \
+  qt/passion/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/passion/res/img/ic-label-liliac.svg \
+  qt/passion/res/img/ic-transaction-warning.svg \
+  qt/passion/res/img/ic-transaction-mint.svg \
+  qt/passion/res/img/topbar_icon/ic-check-cold-staking.svg \
+  qt/passion/res/img/topbar_icon/ic-check-cold-staking-off.svg \
+  qt/passion/res/img/topbar_icon/ic-check-cold-staking-enabled.svg \
+  qt/passion/res/img/topbar_icon/ic-check-connect-off.svg \
+  qt/passion/res/img/topbar_icon/ic-check-tor-off.svg \
+  qt/passion/res/img/topbar_icon/ic-check-tor.svg \
+  qt/passion/res/img/topbar_icon/ic-check-theme-light.svg \
+  qt/passion/res/img/topbar_icon/ic-check-theme-dark.svg \
+  qt/passion/res/img/topbar_icon/ic-check-connect.svg \
+  qt/passion/res/img/topbar_icon/ic-check-locked-off.svg \
+  qt/passion/res/img/dark/ic-transaction-cs-contract.svg \
+  qt/passion/res/img/img-qr.svg \
+  qt/passion/res/img/ic-label.svg \
+  qt/passion/res/img/ic-transaction-received.svg \
+  qt/passion/res/img/dark/ic-transaction-received.svg \
+  qt/passion/res/img/dark/ic-transaction-warning.svg \
+  qt/passion/res/img/dark/ic-transaction-mint.svg \
+  qt/passion/res/img/img-welcome-step1.png \
+  qt/passion/res/img/ic-menu-hover.svg \
+  qt/passion/res/img/ic-transaction-sent.svg \
+  qt/passion/res/img/dark/ic-transaction-sent.svg \
+  qt/passion/res/img/img-welcome-step2.png \
+  qt/passion/res/img/ic-check-dark.svg \
+  qt/passion/res/img/ic-mint.svg \
+  qt/passion/res/img/ic-transaction-staked.svg \
+  qt/passion/res/img/dark/ic-transaction-staked.svg \
+  qt/passion/res/img/img-welcome-step3.png \
+  qt/passion/res/img/ic-check-liliac-on.svg \
+  qt/passion/res/img/nav_icon/ic-nav-address-active.svg \
+  qt/passion/res/img/img-welcome-step4.png \
+  qt/passion/res/img/nav_icon/ic-nav-address-hover.svg \
+  qt/passion/res/img/topbar_icon/ic-update-liliac.svg \
+  qt/passion/res/img/ic-arrow-drop-down-purple.svg \
+  qt/passion/res/img/ic-arrow-drop-up-purple.svg \
+  qt/passion/res/img/ic-check-liliac-indeterminate.svg \
+  qt/passion/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/passion/res/img/ic-transaction-stake-delegated.svg \
+  qt/passion/res/img/ic-transaction-stake-hot.svg \
+  qt/passion/res/img/dark/ic-transaction-stake-hot.svg \
+  qt/passion/res/img/dark/ic-transaction-stake-delegated.svg \
+  qt/passion/res/img/ic-transaction-cs-contract.svg \
+  qt/passion/res/img/ic-check-box-indeterminate.svg \
+  qt/passion/res/img/ic-information.svg \
+  qt/passion/res/img/ic-information-hover.svg \
+  qt/passion/res/img/ani-loading-dark.gif \
+  qt/passion/res/img/ani-loading.gif
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/passion/passiongui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/rpcexecutor.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/passion/loadingdialog.cpp \
+  qt/passion/pwidget.cpp \
+  qt/passion/focuseddialog.cpp \
+  qt/passion/guitransactionsutils.cpp \
+  qt/passion/snackbar.cpp \
+  qt/passion/navmenuwidget.cpp \
+  qt/passion/lockunlock.cpp \
+  qt/passion/receivedialog.cpp \
+  qt/passion/furabstractlistitemdelegate.cpp \
+  qt/passion/txviewholder.cpp \
+  qt/passion/qtutils.cpp \
+  qt/passion/expandablebutton.cpp \
+  qt/passion/balancebubble.cpp \
+  qt/passion/topbar.cpp \
+  qt/passion/txrow.cpp \
+  qt/passion/addressholder.cpp \
+  qt/passion/addressfilterproxymodel.cpp \
+  qt/passion/dashboardwidget.cpp \
+  qt/passion/addresslabelrow.cpp \
+  qt/passion/contactdropdownrow.cpp \
+  qt/passion/contactsdropdown.cpp \
+  qt/passion/optionbutton.cpp \
+  qt/passion/coldstakingmodel.cpp \
+  qt/passion/myaddressrow.cpp \
+  qt/passion/csrow.cpp \
+  qt/passion/sendchangeaddressdialog.cpp \
+  qt/passion/sendconfirmdialog.cpp \
+  qt/passion/sendcustomfeedialog.cpp \
+  qt/passion/sendmemodialog.cpp \
+  qt/passion/sendmultirow.cpp \
+  qt/passion/send.cpp \
+  qt/passion/addnewaddressdialog.cpp \
+  qt/passion/addnewcontactdialog.cpp \
+  qt/passion/requestdialog.cpp \
+  qt/passion/receivewidget.cpp \
+  qt/passion/tooltipmenu.cpp \
+  qt/passion/addresseswidget.cpp \
+  qt/passion/defaultdialog.cpp \
+  qt/passion/coldstakingwidget.cpp \
+  qt/passion/subscription/subscriptionwidget.cpp \
+  qt/passion/subscription/subscriptionmodel.cpp \
+  qt/passion/subscription/subrow.cpp \
+  qt/passion/subscription/subscriptiontipmenu.cpp \
+  qt/passion/subscription/subsite.cpp \
+  qt/passion/subscription/subscriptioninfodialog.cpp \
+  qt/passion/settings/settingsbackupwallet.cpp \
+  qt/passion/settings/settingsexportcsv.cpp \
+  qt/passion/settings/settingsbittoolwidget.cpp \
+  qt/passion/settings/settingsconsolewidget.cpp \
+  qt/passion/settings/settingsdisplayoptionswidget.cpp \
+  qt/passion/settings/settingsfaqwidget.cpp \
+  qt/passion/settings/settingsinformationwidget.cpp \
+  qt/passion/settings/settingsmainoptionswidget.cpp \
+  qt/passion/settings/settingssignmessagewidgets.cpp \
+  qt/passion/settings/settingswalletoptionswidget.cpp \
+  qt/passion/settings/settingswalletrepairwidget.cpp \
+  qt/passion/settings/settingssubscribeoptionswidget.cpp \
+  qt/passion/settings/settingswidget.cpp \
+  qt/passion/welcomecontentwidget.cpp \
+  qt/passion/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_CSS = \
+  qt/passion/res/css/style_dark.css \
+  qt/passion/res/css/style_light.css
+
+BITCOIN_RC = qt/passion/res/passion-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_passion_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# passion-qt binary #
+qt_passion_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_passion_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_passion_qt_SOURCES = qt/passion.cpp
+if TARGET_DARWIN
+  qt_passion_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_passion_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_passion_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_passion_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_passion_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_passion_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBSAPLING) $(LIBRUSTZCASH) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_passion_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_passion_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/passionstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/passionstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/passion.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/passion_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name passion_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name passion $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/passion/*.gcda qt/passion/*.gcno qt/passion/settings/*.gcda qt/passion/settings/*.gcno qt/temp_passion_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+passion_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_passion_qt_OBJECTS) qt/passion-qt$(EXEEXT) $(LIBBITCOINQT)
+
+passion_qt : qt/passion-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@
