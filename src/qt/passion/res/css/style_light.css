@@ -1106,14 +1106,198 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 *[cssClass="group-box"] {
     background-color:transparent;
     border-radius:0;
+    background-color: whitesmoke;
+}
+
+*[cssClass="chat-container-tabwidget"] {
+    background-color: whitesmoke;
+}
+
+*[cssClass="tab-statistics-widget"] {
+    background-color: whitesmoke;
+    border: 1px solid #400447;
+}
+*[cssClass="tab-chat-widget"] {
+    background-color: whitesmoke;
+    border: 1px solid #400447;
+}
+*[cssClass="tabWidgetDashboard"] {
+    background-color: whitesmoke;
+}
+*[cssClass="tabWidgetDashboard"]::tab {
+    color: #a0a0a0;
+    font-size: 16px;
+    border: 1px solid #400447;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    min-width: 30px;
+    height: 100px;
+    padding: 1px;
+}
+*[cssClass="tabWidgetDashboard"]::tab::selected {
+    background-color: #d1d1d1;
+}
+
+*[cssClass="tabWidgetDashboard"]::tab:!selected {
+    background-color: #c0c0c0; 
+}
+*[cssClass="chat-primary-message"] {
+    border:  1px solid #bababa;
+    background-color:whitesmoke;
+    font-size:18px;
+    border-radius: 2px;
+    padding:8px;
+    color: #FFFFFF;
+}
+
+*[cssClass="chat-primary-message"]:focus {
+    border: 1px solid #ca2bac;
+}
+
+*[cssClass="chat-primary-message"]:focus:hover {
+    border: 1px solid #ca2bac;
+}
+
+*[cssClass="chat-primary-message"]:hover {
+    border: 1px solid #FFFFFF;
+}
+
+*[cssClass="chat-text-message-received"] {
+    border:  1px solid #bababa;
+    background-color:whitesmoke;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 5px;
+    color: #FFFFFF;
+}
+*[cssClass="chat-text-message-to-send"] {
+    border:  1px solid #bababa;
+    background-color: whitesmoke;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 5px;
+    color: #FFFFFF;
+}
+*[cssClass="group-box"] {
+    background-color:whitesmoke;
+    border-radius:0;
 }
 
 *[cssClass="group-box-statistics"] {
-    color:#ff0099;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    border-color: #781a85;
+    border-style: solid;
+    border-width: 1px;
+}
+*[cssClass="group-box-statistics"]::title {
+    color:#2e2e2e;
+    font-weight: bold;
     font-size:16px;
     padding-bottom:9px;
-    background-color:seagreen;
-    border-radius:0;
+}
+*[cssClass="group-box-statistics-label"] {
+    color:rgb(70, 66, 66);
+    font-size:14px;
+}
+*[cssClass="group-box-statistics-value"] {
+    color:rgb(71, 62, 122);
+    font-size:14px;
+}
+*[cssClass="chat-address-destination"] {
+    border:  1px solid #474747;
+    background-color: whitesmoke;
+    font-size:18px;
+    border-radius: 2px;
+    padding:8px;
+    padding-right: 12px;
+    padding-left: 12px;
+    color: black;
+    text-align:left;
+}
+
+QLineEdit[cssClass="chat-address-destination"]:focus {
+    border: 1px solid #ca2bac;
+}
+
+QLineEdit[cssClass="chat-address-destination"]:focus:hover  {
+    border: 1px solid #ca2bac;
+}
+
+QLineEdit[cssClass="chat-address-destination"]:hover {
+    border: 1px solid #FFFFFF;
+}
+
+*[cssClass="chat-address-destination-error"] {
+    border:  1px solid #f84444;
+    background-color: whitesmoke;
+    font-size:18px;
+    border-radius: 2px;
+    padding:8px;
+    padding-right: 12px;
+    padding-left: 12px;
+    color: black;
+    text-align:left;
+}
+*[cssClass="subscription-lbl-domain"] {
+    color:#ca2bac;
+    font-size:16px;
+}
+*[cssClass="subrow-lbl-domain"] {
+    color:#ca2bac;
+    font-size:16px;
+}
+*[cssClass="subrow-lbl-key"] {
+    color:#B3FFFFFF;
+    font-size:14px;
+}
+*[cssClass="subrow-lbl-valid-title"] {
+    color:#ca2bac;
+    font-size:16px;
+}
+*[cssClass="subrow-lbl-valid-value"] {
+    color:#B3FFFFFF;
+    font-size:14px;
+}
+*[cssClass="subrow-lbl-valid-value-active"] {
+    color:#008d36;
+    font-size:14px;
+}
+*[cssClass="subrow-lbl-paymentaddr-title"] {
+    color:#ca2bac;
+    font-size:16px;
+}
+*[cssClass="subrow-lbl-paymentaddr-value"] {
+    color:#B3FFFFFF;
+    font-size:14px;
+}
+*[cssClass="subrow-lbl-regaddr-title"] {
+    color:#ca2bac;
+    font-size:16px;
+}
+*[cssClass="subrow-lbl-regaddr-value"] {
+    color:#B3FFFFFF;
+    font-size:14px;
+}
+*[cssClass="subrow-lbl-balance-regaddr-title"] {
+    color:#ca2bac;
+    font-size:16px;
+}
+*[cssClass="subrow-lbl-balance-regaddr-value"] {
+    color:#B3FFFFFF;
+    font-size:14px;
+}
+*[cssClass="subrow-lbl-sitefee-title"] {
+    color:#ca2bac;
+    font-size:16px;
+}
+*[cssClass="subrow-lbl-sitefee-value"] {
+    color:#B3FFFFFF;
+    font-size:14px;
+}
+*[cssClass="subrow-lbl-divisory"] {
+    color:#B3FFFFFF;
+    font-size:14px;
 }
 
 QGroupBox::title {
