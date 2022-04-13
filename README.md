@@ -9,15 +9,13 @@ Passion Core integration/staging repository
 
 Passion is an open source community-driven cryptocurrency, focused on five main aspects:
 
-(1) User Data Protection: Through the use of SHIELD, a zk-SNARKs based privacy protocol.
+(1) User Data Protection: Through the use of SHIELD, a zk-SNARKs based privacy protocol, a fast anonymous subscription system as well a free to use anonymous crypto chat.
 
-(2) Low environmental footprint and network participation equality: Through the use of a highly developed Proof of Stake protocol.
+(2) Low environmental footprint and network participation equality: Through the use of a highly developed Proof of Stake protocol. A multi-level staking system allows to stake fully offline. Its not needed to keep your wallet 24/7 online.
 
-(3) Decentralized Governance System: A DAO built on top of the tier two Masternodes network, enabling a monthly community treasury, proposals submission and decentralized voting.
+(3) Fast Transactions: Through the use of fast block times and the tier two network, Passion is committed to continue researching new and better instant transactions mechanisms.
 
-(4) Fast Transactions: Through the use of fast block times and the tier two network, Passion is committed to continue researching new and better instant transactions mechanisms.
-
-(5) Ease of Use: Passion is determined to offer the best possible graphical interface for a core node/wallet. A full featured graphical product for new and advanced users.
+(4) Ease of Use: Passion is determined to offer the best possible graphical interface for a core node/wallet. A full featured graphical product for new and advanced users.
 
 A lot more information and open for suggestions join the community at [Passion Discord](https://discord.gg/mkERQwqytZ).
 
