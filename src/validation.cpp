@@ -1376,7 +1376,7 @@ DisconnectResult DisconnectBlock(CBlock& block, const CBlockIndex* pindex, CCoin
 
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev->GetBlockHash());
-    CMultiTier::getInstance()->DisconnectBlock(block,view,pindex);
+    //CMultiTier::getInstance()->DisconnectBlock(block,view,pindex);
     return fClean ? DISCONNECT_OK : DISCONNECT_UNCLEAN;
 }
 
@@ -2720,7 +2720,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
     if (fCheckPOW && fCheckMerkleRoot && fCheckSig)
         block.fChecked = true;
-
     return true;
 }
 
@@ -3082,11 +3081,12 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
                 return error("%s: coin stake inputs not-available/already-spent on main chain, received height %d vs current %d", __func__, nHeight, chainActive.Height());
             }
         }
+        /*
         if(!CMultiTier::getInstance()->ConnectBlock(block,coins,pindex)) {
             return state.DoS(100,
                         error("CMultiTier::ConnectBlock(): MultiTierStaking was not valid or payments are missing)"),
                         REJECT_INVALID, "bad-multitier-transaction");
-        }
+        }*/
     }
 
     // Write block to history file
@@ -3465,9 +3465,10 @@ bool CVerifyDB::VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth
                 return error("%s: *** ReadBlockFromDisk failed at %d, hash=%s", __func__, pindex->nHeight, pindex->GetBlockHash().ToString());
             if (!ConnectBlock(block, state, pindex, coins, false))
                 return error("%s: *** found unconnectable block at %d, hash=%s", __func__, pindex->nHeight, pindex->GetBlockHash().ToString());
+            /*
             if(!CMultiTier::getInstance()->ConnectBlock(block,static_cast<const CCoinsViewCache&>(coins) , pindex)) {
                 return error("%s: *** MultiTier error. Can't connect block at %d, hash=%s", __func__, pindex->nHeight, pindex->GetBlockHash().ToString());
-            }
+            }*/
         }
     }
     LogPrintf("No coin database inconsistencies in last %i blocks (%i transactions)\n", chainHeight - pindexState->nHeight, nGoodTransactions);
@@ -3494,6 +3495,7 @@ static bool RollforwardBlock(const CBlockIndex* pindex, CCoinsViewCache& inputs,
         // Pass check = true as every addition may be an overwrite.
         AddCoins(inputs, *tx, pindex->nHeight, true);
     }
+    /*
     if(!CMultiTier::getInstance()->CheckTransactionMultiTier(pindex->nHeight, block, GetBlockValue(pindex->nHeight), pindex, inputs)) {
             return false;
             //return state.DoS(0, false, REJECT_INVALID, "bad multi-tier", false, "Required payment missing or not valid");
@@ -3502,6 +3504,7 @@ static bool RollforwardBlock(const CBlockIndex* pindex, CCoinsViewCache& inputs,
         } else {
             std::cout << "RollBackForwardd: Multi-Tier-Staking block was valid all necessary payments found" << std::endl;
         }
+        */
     return true;
 }
 

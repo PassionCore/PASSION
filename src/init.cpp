@@ -1603,6 +1603,7 @@ bool AppInitMain()
                 pcoinsTip = new CCoinsViewCache(pcoinscatcher);
                 
                 // TODO MULTI TIER STAKING
+                /*
                 std::unique_ptr<CCoinsViewCursor> pcursor(pcoinsTip->Cursor());
                 while (pcursor->Valid()) {
                     boost::this_thread::interruption_point();
@@ -1610,14 +1611,15 @@ bool AppInitMain()
                     Coin coin;
                     
                     if (pcursor->GetKey(key) && pcursor->GetValue(coin)) {
+                    
                         if(CMultiTier::getInstance()->IsMultiTierOutput(coin.out.nValue)) {
                             CMultiTier::getInstance()->AddEntryMultiTierStaking(key);
-                        }                
+                        }              
                     } else {
                         return error("%s: unable to read value", __func__);
                     }
                     pcursor->Next();
-                }
+                } */
                 // !TODO: after enabling reindex-chainstate
                 // if (!fReindex && !fReindexChainState) {
                 if (!fReindex) {
@@ -1712,7 +1714,7 @@ bool AppInitMain()
 #ifdef ENABLE_WALLET
     if (!CWallet::InitLoadWallet())
         return false;
-    CMultiTier::getInstance()->LockMultiTierUTXOs();
+    //CMultiTier::getInstance()->LockMultiTierUTXOs();
 #else
     LogPrintf("No wallet compiled in!\n");
 #endif
